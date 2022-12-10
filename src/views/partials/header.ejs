@@ -1,0 +1,51 @@
+<div class="header">
+    <div class="wrap-header">
+        <div class="header-logo" style="display: inline-flex;">
+            <a href="/"><img src="/images/logo.png" alt="logo.png"></a>
+        </div>
+        <div class="nav-and-user-container">
+            <div class="nav-container">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/menu">Thực đơn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">Giỏ hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <% if(!name){ %>
+                            <a class="nav-link" href="/user/login">Đăng nhập</a>
+                            <% } else{ %>
+
+                                <% } %>
+            </div>
+            </li>
+            </ul>
+            <% if(name){ %>
+                <div class="welcome-text">
+                    <p>Xin chào,
+                        <%= name %>
+                    </p>
+                    <% if(admin === 3){ %>
+                        <a href="/admin/user">Quản lí</a>
+                        <% } %>
+                    <% if(admin === 2){ %>  
+                        <a href="/staff">Quản lí đơn hàng</a>
+                        <% } %> 
+                    <% if(admin === 1){ %>  
+                        <a href="/staff/ship">Nhận đơn hàng</a>
+                        <% } %> 
+                            <a href="/user/logout">Đăng xuất</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+</div>
+</div>

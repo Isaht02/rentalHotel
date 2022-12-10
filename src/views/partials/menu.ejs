@@ -1,0 +1,28 @@
+<!-- Menu Section -->
+<div class="menu-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center menu-heading">
+                <h2 class="cursive-font-h">Thực đơn nhà hàng</h2>
+                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+            </div>
+        </div>
+            <div class="row">
+                <% for(var i = 0; i <= 2; i++){ %>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                      <a href="<%= result[i].img %>" class="card mb-3 border-1 text-center">
+                        <img src="<%= result[i].img %>" alt="Card image" class="card-img-top img-responsive">
+                    <div class="card-body menu-card-text">
+                          <h2 class="card-title"><%= result[i].name %></h2>
+                          <p class="card-text"><%= result[i].des %>.</p>
+                          <p><span class="price cursive-font">$<%= result[i].price %></span></p>
+                    </div>
+                      </a>
+                </div>
+                <% } %>
+            </div>
+     </div>
+     <div class="btn-container">
+        <a href="/menu"><button type="button" class="btn btn-warning">Xem thêm</button></a>
+     </div>
+</div>
