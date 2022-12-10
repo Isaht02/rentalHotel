@@ -41,11 +41,25 @@ const loginValidator = [
 	.isLength({min: 6}).withMessage('Mật khẩu phải nhiều hơn 6 kí tự')
 ]
 
+Router.get('/about', function(req, res) {
+    res.render('about')
+})
+
+Router.get('/services', function(req, res) {
+    res.render('services')
+})
+
+Router.get('/rooms', function(req, res) {
+    res.render('rooms')
+})
+
+Router.get('/contact', function(req, res) {
+    res.render('contact')
+})
+
 Router.get('/register', UserController.getRegister)
 
 Router.post('/register', registerValidator, UserController.postRegister)
-
-
 
 Router.get('/logout', function(req, res) {
 	req.session.destroy()
@@ -62,5 +76,7 @@ Router.get('/fail', function(req, res) {
 Router.get('/login', UserController.getLogin)
 
 Router.post('/login', loginValidator, UserController.postLogin)
+
+
 
 module.exports = Router

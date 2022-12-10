@@ -5,7 +5,7 @@ const flash = require('express-flash')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 
-// const UserRouter = require('./routers/UserRouter')
+const UserRouter = require('./routers/UserRouter')
 
 
 const app = express()
@@ -22,7 +22,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
 // routes 
-// app.use('/user', UserRouter)
+app.use('/', UserRouter)
 
 
 const port = process.env.PORT || 8080
@@ -32,26 +32,6 @@ app.listen(port, function(err) {
 
 app.get('/', function(req, res) {
     res.render('index')
-})
-
-app.get('/about', function(req, res) {
-    res.render('about')
-})
-
-app.get('/services', function(req, res) {
-    res.render('services')
-})
-
-app.get('/rooms', function(req, res) {
-    res.render('rooms')
-})
-
-app.get('/contact', function(req, res) {
-    res.render('contact')
-})
-
-app.get('/login', function(req, res) {
-    res.render('login')
 })
 
 // app.use( function(req, res){

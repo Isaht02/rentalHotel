@@ -38,6 +38,21 @@
             <li class="nav-item"><a href="about" class="nav-link">About</a></li>
             <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
 	        </ul>
+          <ul class="nav navbar-nav navbar-right ml-5">
+             <li class="dropdown">  <a href="#" class="btn btn-danger btn-round dropdown-toggle" data-toggle="dropdown" role="button">
+              Sign In<span class="caret"></span>
+              </a>
+              <div class="dropdown-menu" style="padding: 20px; padding-bottom: 10px;">
+                <form class="form-horizontal" method="post" accept-charset="UTF-8">
+                    <input class="form-control login" type="text" name="username" placeholder="Username.." /><br>
+                    <input class="form-control login" type="password" name="password" placeholder="Password.."/><br>
+                    <input class="btn btn-primary" type="submit" name="submit" value="Login" />
+                </form>
+              </div>
+              </li>
+              <a href="/register" class="btn btn-link btn-round ml-2">
+              Sign Up</a>
+          </ul>
 	      </div>
 	    </div>
 	  </nav>
