@@ -1,51 +1,47 @@
-<div class="header">
-    <div class="wrap-header">
-        <div class="header-logo" style="display: inline-flex;">
-            <a href="/"><img src="/images/logo.png" alt="logo.png"></a>
-        </div>
-        <div class="nav-and-user-container">
-            <div class="nav-container">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Trang chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/menu">Thực đơn</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cart">Giỏ hàng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Liên hệ</a>
-                    </li>
-                    <li class="nav-item">
-                        <% if(!name){ %>
-                            <a class="nav-link" href="/user/login">Đăng nhập</a>
-                            <% } else{ %>
-
-                                <% } %>
-            </div>
-            </li>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Vacation<span>Rental</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item <% if (active == 0) { %> active <% } %>"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item <% if (active == 1) { %> active <% } %>"><a href="rooms" class="nav-link">Room</a></li>
+                <li class="nav-item <% if (active == 2) { %> active <% } %>"><a href="services" class="nav-link">Services</a></li>
+                <li class="nav-item <% if (active == 3) { %> active <% } %>"><a href="about" class="nav-link">About</a></li>
+                <li class="nav-item <% if (active == 4) { %> active <% } %>"><a href="contact" class="nav-link">Contact</a></li>
             </ul>
-            <% if(name){ %>
-                <div class="welcome-text">
-                    <p>Xin chào,
-                        <%= name %>
-                    </p>
-                    <% if(admin === 3){ %>
-                        <a href="/admin/user">Quản lí</a>
-                        <% } %>
-                    <% if(admin === 2){ %>  
-                        <a href="/staff">Quản lí đơn hàng</a>
-                        <% } %> 
-                    <% if(admin === 1){ %>  
-                        <a href="/staff/ship">Nhận đơn hàng</a>
-                        <% } %> 
-                            <a href="/user/logout">Đăng xuất</a>
-                </div>
-            <% } %>
+            <% if (!name) { %>
+            <ul class="nav navbar-nav navbar-right ml-5">
+                <li class="dropdown"> <a href="#" class="btn btn-danger btn-round dropdown-toggle" data-toggle="dropdown" role="button">
+                        Sign In<span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" style="padding: 20px; padding-bottom: 10px;">
+                        <form class="form-horizontal" method="post" accept-charset="UTF-8">
+                            <input class="form-control login" type="text" name="user" placeholder="Username.." /><br>
+                            <input class="form-control login" type="password" name="password" placeholder="Password.." /><br>
+                            <% if (error.length > 0) { %>
+                            <div class="alert">
+                                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                <%= error %>
+                            </div>
+                            <%  } %>
+                            <input class="btn btn-primary" type="submit" name="submit" value="Login" />
+                        </form>
+                    </div>
+                </li>
+                <a href="/register" class="btn btn-link btn-round ml-2">
+                    Sign Up</a>
+            </ul>
+            <% } else { %>
+            <div class="welcome-text">
+                <p>Xin chào,
+                    <%= name %>
+                </p>   
+                <a href="/logout"><u>Đăng xuất</u></a>
+            </div>
+            <% } %> 
         </div>
     </div>
-</div>
-</div>
-</div>
+</nav>

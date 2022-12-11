@@ -24,38 +24,7 @@
   </head>
   <body>
 		
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	    	<a class="navbar-brand" href="index.html">Vacation<span>Rental</span></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="rooms" class="nav-link">Room</a></li>        	
-	        	<li class="nav-item"><a href="services" class="nav-link">Services</a></li>
-	        	<li class="nav-item active"><a href="about" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
-	        </ul>
-          <ul class="nav navbar-nav navbar-right ml-5">
-             <li class="dropdown">  <a href="#" class="btn btn-danger btn-round dropdown-toggle" data-toggle="dropdown" role="button">
-              Sign In<span class="caret"></span>
-              </a>
-              <div class="dropdown-menu" style="padding: 20px; padding-bottom: 10px;">
-                <form class="form-horizontal" method="post" accept-charset="UTF-8">
-                    <input class="form-control login" type="text" name="username" placeholder="Username.." /><br>
-                    <input class="form-control login" type="password" name="password" placeholder="Password.."/><br>
-                    <input class="btn btn-primary" type="submit" name="submit" value="Login" />
-                </form>
-              </div>
-              </li>
-              <a href="/register" class="btn btn-link btn-round ml-2">
-              Sign Up</a>
-          </ul>
-	      </div>
-	    </div>
-	  </nav>
+		<%- include('./partials/header'); %>
     <!-- END nav -->
 
     <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">

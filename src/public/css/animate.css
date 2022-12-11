@@ -3381,3 +3381,19 @@ Copyright (c) 2015 Daniel Eden
 .dropdown-menu {
     width: 300px !important;
 }
+.welcome-text {
+  margin: auto 5px auto 5px;
+}
+
+.welcome-text p {
+  font-weight: bold;
+  color: #4EAEFF;
+  text-align: center;
+  margin: auto 5px auto 5px;
+}
+
+.welcome-text a {
+  color: #FF3D1D;
+  text-align: center;
+  margin: auto 5px auto 5px;
+}

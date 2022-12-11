@@ -1,17 +1,17 @@
 const conn = require('../models/db/config')
 
 const User = {
-	getUsersByEmail:function(user, callback){
-		return conn.query('Select * from account where Email = ?', [user], callback)
+	getUsersByUsername:function(user, callback){
+		return conn.query('Select * from accounts where username = ?', [user], callback)
 	},
-	addUser:function([email, hashed, first, last, address], callback){
-		return conn.query('Insert into account(Email, Password, Firstname, Lastname, Address) values(?, ?, ?, ?, ?)', [email, hashed, first, last, address], callback)
+	addUser:function([username, hashed, first, last, address, phone, gender], callback){
+		return conn.query('Insert into accounts(username, password, firstname, lastname, address, phone, gender) values(?, ?, ?, ?, ?, ?, ?)', [username, hashed, first, last, address, phone, gender], callback)
 	},
 	getUser:function([email, pass, first, last, address], callback){
-		return conn.query('Select * from account', [email, pass, first, last, address], callback)
+		return conn.query('Select * from accounts', [email, pass, first, last, address], callback)
 	},
 	deleteUser:function([Email],callback){
-		return conn.query('Delete * from account where Email = ?', [Email], callback)
+		return conn.query('Delete * from accounts where Email = ?', [Email], callback)
 	}
 
 }

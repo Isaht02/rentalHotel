@@ -30,9 +30,6 @@ app.listen(port, function(err) {
     console.log(`http://localhost:${port}`)
 })
 
-app.get('/', function(req, res) {
-    res.render('index')
-})
 
 // app.use( function(req, res){
 //     return res.status(404).render('badgate')

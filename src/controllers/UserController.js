@@ -11,41 +11,44 @@ module.exports = {
     getRegister: function(req, res) {
         const error = req.flash('error') || ''
         const address = req.flash('address') || ''
-        const email = req.flash('email') || ''
+        const username = req.flash('username') || ''
         const first = req.flash('first') || ''
         const last = req.flash('last') || ''
-        res.render('register', { error, address, email, first, last })
+        const phone = req.flash('phone') || ''
+        res.render('register', { error, address, username, first, last, phone })
     },
 
     postRegister: function(req, res) {
         let result = validationResult(req)
 
         if (result.errors.length === 0) {
-            const { email, pass, first, last, address } = req.body
-
+            const { username, pass, first, last, phone, gender, address} = req.body
+            console.log(gender)
             const hashed = bcrypt.hashSync(pass, 10)
-            const params = [email, hashed, first, last, address]
+            const params = [username, hashed, first, last, address, phone, gender]
 
             User.addUser(params, function(err, results, fields) {
                 if (err) {
                     req.flash('error', err.message)
                     req.flash('address', address)
-                    req.flash('email', email)
+                    req.flash('username', username)
                     req.flash('first', first)
                     req.flash('last', last)
-                    return res.redirect('/user/register')
+                    req.flash('phone', phone)
+                    return res.redirect('/register')
                 } else if (results.affectedRows == 1) {
                     if (req.session.admin === 1 && req.session.name) {
                         return res.redirect('/admin/user')
                     }
-                    return res.redirect('/user/login')
+                    return res.redirect('/')
                 }
                 req.flash('error', 'Đăng ký thất bại')
                 req.flash('address', address)
-                req.flash('email', email)
+                req.flash('username', username)
                 req.flash('first', first)
                 req.flash('last', last)
-                return res.redirect('/user/register')
+                req.flash('phone', phone)
+                return res.redirect('/register')
             })
 
             return;
@@ -56,14 +59,15 @@ module.exports = {
             message = result[fields].msg
             break
         }
-        const { email, first, last, address } = req.body
+        const { username, first, last, phone, address } = req.body
 
         req.flash('error', message)
         req.flash('address', address)
-        req.flash('email', email)
+        req.flash('username', username)
+        req.flash('phone', phone)
         req.flash('first', first)
         req.flash('last', last)
-        res.redirect('/user/register')
+        res.redirect('/register')
     },
 
     getLogin: function(req, res) {
@@ -79,31 +83,28 @@ module.exports = {
         if (result.errors.length == 0) {
             const user = req.body.user
             const password = req.body.password
-            User.getUsersByEmail([user], function(err, results, fields) {
+            User.getUsersByUsername([user], function(err, results, fields) {
                 if (err) {
                     req.flash('error', err.message)
                     req.flash('user', user)
                     req.flash('password', password)
-                    return res.redirect('/user/login')
+                    return res.redirect('/')
                 } else if (results.length === 0) {
-                    req.flash('error', 'Email hoặc sđt không tồn tại')
+                    req.flash('error', 'Username không tồn tại')
                     req.flash('user', user)
                     req.flash('password', password)
-                    return res.redirect('/user/login')
+                    return res.redirect('/')
                 } else {
-                    const hashed = results[0].Password
+                    const hashed = results[0].password
                     const match = bcrypt.compareSync(password, hashed)
                     if (!match) {
-                        req.flash('error', 'Sai email, sđt hoặc mật khẩu')
+                        req.flash('error', 'Sai username hoặc mật khẩu')
                         req.flash('user', user)
                         req.flash('password', '')
-                        return res.redirect('/user/login')
+                        return res.redirect('/')
                     } else {
                         req.session.loggedin = true
-                        req.session.name = results[0].Firstname + " " + results[0].Lastname
-                        req.session.admin = results[0].Admin
-                        req.session.email = results[0].Email
-                        req.session.address = results[0].Address
+                        req.session.name = results[0].firstname + " " + results[0].lastname
                         return res.redirect('/')
                     }
 
@@ -121,7 +122,7 @@ module.exports = {
             req.flash('error', message)
             req.flash('user', user)
             req.flash('password', password)
-            res.redirect('/user/login')
+            res.redirect('/')
         }
 
     }
