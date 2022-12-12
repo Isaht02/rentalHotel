@@ -51,24 +51,18 @@ Router.get('/', function(req, res) {
 	res.render('index', {error, name, active})
 })
 
-Router.get('/rooms', function(req, res) {
-	const error = req.flash('error') || ''
-	const name = req.session.name
-	const active = 1
-	res.render('rooms', {error, name, active})
-})
 
 Router.get('/services', function(req, res) {
 	const error = req.flash('error') || ''
 	const name = req.session.name
-	const active = 2
+	const active = 1
 	res.render('services', {error, name, active})
 })
 
 Router.get('/about', function(req, res) {
 	const error = req.flash('error') || ''
 	const name = req.session.name
-	const active = 3
+	const active = 2
 	res.render('about', {error, name, active})
 })
 
@@ -76,7 +70,7 @@ Router.get('/about', function(req, res) {
 Router.get('/contact', function(req, res) {
 	const error = req.flash('error') || ''
 	const name = req.session.name
-	const active = 4
+	const active = 3
 	res.render('contact', {error, name, active})
 })
 
