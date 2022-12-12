@@ -6,7 +6,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 
 const UserRouter = require('./routers/UserRouter')
-
+const RoomRouter = require('./routers/RoomRouter')
 
 const app = express()
 
@@ -23,6 +23,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 // routes 
 app.use('/', UserRouter)
+app.use('/rooms', RoomRouter)
 
 
 const port = process.env.PORT || 8080

@@ -37,7 +37,7 @@
 		<div class="container">
 			<div class="row justify-content-end">
 				<div class="col-lg-4">
-					<form action="/rooms" class="appointment-form" method="post" onsubmit="return validateForm();">
+					<form action="/rooms" class="appointment-form" method="post">
 						<h3 class="mb-3">Book your room</h3>
 						<div class="row">
 							<div class="col-md-6">
@@ -62,7 +62,7 @@
 										<div class="select-wrap">
 											<div class="icon"><span class="fa fa-chevron-down"></span></div>
 											<select name="person" id="person" class="form-control">
-												<option value="0">Person</option>
+												<option value="">Person</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
@@ -78,6 +78,12 @@
 									<input name="phone" id="phone" type="text" class="form-control" placeholder="Phone number">
 								</div>
 							</div>
+							<% if (errorSearch.length > 0) { %>
+                            <div class="ml-3 alert">
+                                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                <%= errorSearch %>
+                            </div>
+                            <%  } %>
 							<div class="col-md-12">
 								<div class="form-group">
 									<input type="submit" value="Search Room Available" class="btn btn-primary py-3 px-4">
@@ -248,27 +254,6 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="/js/google-map.js"></script>
 	<script src="/js/main.js"></script>
-	<script type="text/javascript">
-	function validateDate(){
-		var dateOK  = false;
-		var today   = new Date();
-		var startDt = new Date(document.getElementById("checkIn").value).getTime();
-		var endDt   = new Date(document.getElementById("checkOut").value).getTime();
-		var person = document.getElementById("person").value
-		var phone = document.getElementById("phone").value
-
-		if (startDt < today || endDt < today)
-			alert('Cannot select a date in the past.');
-		else if (startDt > 2020 || endDt > 2020) 
-			alert('Cannot select dates beyond 2020.');
-		else if(startDt > endDt){
-			alert ('Checkout date is greater than Checkin date.');
-		else if (startDt.isEmpty() || endDt.isEmpty() || person.isEmpty() || phone.isEmpty())
-			alert('Please fill full information')
-		else dateOK = true;
-		return dateOK;
-	}
-  </script>
 
 </body>
 

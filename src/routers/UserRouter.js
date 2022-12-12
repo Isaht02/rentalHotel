@@ -11,8 +11,9 @@ const registerValidator = [
 	check('last').exists().withMessage('Vui lòng nhập họ của bạn')
 	.notEmpty().withMessage('Họ của bạn không được để trống'),
 
-	check('username').exists().withMessage('Vui lòng nhập username người dùng')
-	.notEmpty().withMessage('Username người dùng không được để trống'),
+	check('person').exists().withMessage('Vui lòng chọn số lượng người')
+	.notEmpty().withMessage('Số lượng người không được để trống'),
+
 
 	check('pass').exists().withMessage('Vui lòng nhập mật khẩu người dùng')
 	.notEmpty().withMessage('Mật khẩu người dùng không được để trống') 
@@ -46,9 +47,10 @@ const loginValidator = [
 
 Router.get('/', function(req, res) {
 	const error = req.flash('error') || ''
+	const errorSearch = req.flash('errorSearch') || ''	
 	const name = req.session.name
 	const active = 0
-	res.render('index', {error, name, active})
+	res.render('index', {errorSearch, error, name, active})
 })
 
 
