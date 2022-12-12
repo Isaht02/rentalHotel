@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.3.0-dev+20221207.ce5ce76a8d
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2022 at 09:28 AM
+-- Generation Time: Dec 12, 2022 at 03:49 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.5
+-- PHP Version: 8.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,8 +72,8 @@ CREATE TABLE `reservations` (
   `customer_id` int(11) DEFAULT NULL,
   `room_id` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  `date_in` datetime DEFAULT NULL,
-  `date_out` datetime DEFAULT NULL,
+  `date_in` date DEFAULT NULL,
+  `date_out` date DEFAULT NULL,
   `total_payment` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -93,6 +93,16 @@ CREATE TABLE `rooms` (
   `img` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `name`, `price`, `type`, `bedNum`, `peopleNum`, `img`) VALUES
+(1, 'room1', 100, 'small', 2, 3, NULL),
+(2, 'room2', 200, 'medium', 2, 4, NULL),
+(3, 'room3', 300, 'big', 2, 5, NULL),
+(4, 'room4', 100, 'small', 2, 3, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -106,6 +116,15 @@ CREATE TABLE `roomtypes` (
   `bedNum` int(12) DEFAULT NULL,
   `peopleNum` int(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roomtypes`
+--
+
+INSERT INTO `roomtypes` (`id`, `type`, `price`, `bedNum`, `peopleNum`) VALUES
+(1, 'small', 100, 2, 3),
+(2, 'medium', 200, 2, 4),
+(3, 'big', 300, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -186,13 +205,13 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roomtypes`
 --
 ALTER TABLE `roomtypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transactions`
