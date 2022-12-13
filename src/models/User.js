@@ -10,8 +10,14 @@ const User = {
 	getUser:function([email, pass, first, last, address], callback){
 		return conn.query('Select * from accounts', [email, pass, first, last, address], callback)
 	},
-	deleteUser:function([Email],callback){
-		return conn.query('Delete * from accounts where Email = ?', [Email], callback)
+	getAllUser:function(callback){
+		return conn.query('Select * from accounts', callback)
+	},
+	deleteUser:function([id],callback){
+		return conn.query('Delete from accounts where id = ?', [id], callback)
+	},
+	getUserByID: function([id], callback){
+		return conn.query('Select * from accounts where id = ?', [id], callback)
 	}
 
 }
