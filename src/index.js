@@ -36,15 +36,6 @@ app.listen(port, function(err) {
     console.log(`http://localhost:${port}`)
 })
 
-// app.get('/detail', function(req, res) {
-//     const error = req.flash('error') || ''
-//     const active = 1
-//     const name = req.session.name
-//     res.render('roomdetail', {active, name, error})
-// })
-
-
-
 app.use( function(req, res){
     return res.status(404).render('badgate')
 })
