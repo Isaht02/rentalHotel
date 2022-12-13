@@ -45,6 +45,6 @@ app.listen(port, function(err) {
 
 
 
-// app.use( function(req, res){
-//     return res.status(404).render('badgate')
-// })
+app.use( function(req, res){
+    return res.status(404).render('badgate')
+})
