@@ -9,6 +9,7 @@ const roomValidator = [
 	.custom((value, {req}) => {
 		const timeElapsed = Date.now();
 		const checkIn = new Date(value).getTime()
+		//console.log(new Date(value).getDate())
 		if (checkIn < timeElapsed) {
 			throw new Error('Ngày đặt phòng không hợp lệ')
 		}
@@ -20,6 +21,7 @@ const roomValidator = [
 	.custom((value, {req}) => {
 		const timeElapsed = Date.now();
 		const checkOut = new Date(value).getTime()
+
 		if (checkOut < timeElapsed) {
 			throw new Error('Ngày trả phòng không hợp lệ')
 		}
