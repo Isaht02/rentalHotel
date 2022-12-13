@@ -33,7 +33,6 @@
 
   </head>
   <body>
-		
 		<%- include('./partials/header'); %>
     <!-- END nav -->
 
@@ -77,8 +76,10 @@
             </div>
         </div>
     </div>
-    <% if (name) { %>
 
+
+
+    <% if (name) { %>
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
@@ -89,6 +90,7 @@
                     <h4 class="modal-title w-100">Booking Confirm!</h4>
                 </div>
                 <div class="modal-body">
+                    <form action="/detail/<%= result[0].id %>" method="POST">
                     <div class="form-group">
                         <div class="input-wrap">
                             <label for="firstname">Ngày đặt phòng</label>
@@ -107,6 +109,7 @@
                         <label for="firstname">Số điện thoại</label>
                         <input value="<%= data.phone %>" name="phone" id="phone" type="text" class="form-control" placeholder="Phone number">
                     </div>
+                    <input value="<%= (new Date(data.checkOut).getDate() - new Date(data.checkIn).getDate())*result[0].price %>" name="total" type="hidden" class="form-control">
                     <p class="text-center h3">Total: $<%= (new Date(data.checkOut).getDate() - new Date(data.checkIn).getDate())*result[0].price %></p>
                     <% if (data.errorSearch.length > 0) { %>
                     <div class="ml-3 alert">
@@ -115,9 +118,9 @@
                     </div>
                     <%  } %>
                 </div>
-                <form action="/detail/<%= result[0].id %>" method="POST">
+                
                 <div class="modal-footer">
-                    <button type="submit" value="" name="checkout" class="btn btn-success btn-block">Thanh toán</button>
+                    <button href="#myModalS" data-toggle="modal" type="submit" name="checkout" class="btn btn-success btn-block">Thanh toán</button>
                 </div>
                 </form>
             </div>
@@ -145,6 +148,24 @@
         </div>
     </div>
     <% } %>
+    <div id="myModalS" class="modal fade">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="icon-box">
+                                <i class="material-icons">&#xE876;</i>
+                            </div>
+                            <h4 class="modal-title w-100">Thanh toán thành công!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">Chúc mừng bạn đã thanh toán đặt phòng thành công!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="checkout" class="btn btn-success btn-block">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     <%- include('./partials/roomsintro'); %>
 	<%- include('./partials/footer'); %>
     

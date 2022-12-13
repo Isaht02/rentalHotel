@@ -55,7 +55,6 @@ module.exports = {
                 person: req.flash('person'),
                 phone: req.flash('phone')
             }
-
             res.render('index', {rooms, data, active, name})
         })
     }
