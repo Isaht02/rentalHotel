@@ -9,6 +9,14 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" href="/css/animate.css">
     
@@ -21,6 +29,7 @@
 
     <link rel="stylesheet" href="/css/flaticon.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/checkout.css">    
 
   </head>
   <body>
@@ -52,23 +61,92 @@
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-6">
                         <h4 class="box-title mt-2">Room description</h4>
-                        <p>Lorem Ipsum available,but the majority have suffered alteration in some form,by injected humour,or randomised words which don't look even slightly believable.but the majority have suffered alteration in some form,by injected humour</p>
+                        <p><%= result[0].des %></p>
                         <h2 class="mt-4">
-                            <%=result[0].price%>$ <small class="text-success">(36%off)</small>
+                            <%=result[0].price%>$ <small class="text-success">(16%off)</small>
                         </h2>
-                        <button class="btn btn-primary btn-rounded mt-4">Book now</button>
+                        <button href="#myModal" data-toggle="modal" class="btn btn-primary btn-rounded mt-4">Book now</button>
                         <h3 class="box-title mt-4">Room Service</h3>
                         <ul class="list-unstyled">
-                        
-                            <li><i class="fa fa-check text-success"></i>lkasdjlaskjdlkasd</li>
-                     
+                            <% for (let i = 0; i < facilities.length; i++) { %>
+                            <li><i class="fa fa-check text-success"></i><%= facilities[i].name %></li>
+                            <% } %>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-		<%- include('./partials/footer'); %>
+    <% if (name) { %>
+
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <h4 class="modal-title w-100">Booking Confirm!</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="input-wrap">
+                            <label for="firstname">Ngày đặt phòng</label>
+                            <div class="icon"><span class="ion-md-calendar"></span></div>
+                                <input value="<%= data.checkIn %>" name="checkIn" id="checkIn" type="text" class="form-control appointment_date-check-in" placeholder="Check-In">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-wrap">
+                            <label for="firstname">Ngày trả phòng</label>
+                            <div class="icon"><span class="ion-md-calendar"></span></div>
+                                <input value="<%= data.checkOut %>" name="checkOut" id="checkOut" type="text" class="form-control appointment_date-check-out" placeholder="Check-Out">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Số điện thoại</label>
+                        <input value="<%= data.phone %>" name="phone" id="phone" type="text" class="form-control" placeholder="Phone number">
+                    </div>
+                    <p class="text-center h3">Total: $<%= (new Date(data.checkOut).getDate() - new Date(data.checkIn).getDate())*result[0].price %></p>
+                    <% if (data.errorSearch.length > 0) { %>
+                    <div class="ml-3 alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <%= data.errorSearch %>
+                    </div>
+                    <%  } %>
+                </div>
+                <form action="/detail/<%= result[0].id %>" method="POST">
+                <div class="modal-footer">
+                    <button type="submit" value="" name="checkout" class="btn btn-success btn-block">Thanh toán</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% } else {%>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-boxx">
+                        <i class="material-icons">error</i>
+                    </div>
+                    <h4 class="modal-title w-100">Booking chưa thành công!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Bạn cần đăng nhập trước khi đặt phòng của bạn!</p>
+                </div>
+                <form action="">
+                    <div class="modal-footer">
+                        <button class="btn btn-link btn-block" >Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <%- include('./partials/roomsintro'); %>
+	<%- include('./partials/footer'); %>
     
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

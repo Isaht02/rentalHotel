@@ -105,6 +105,7 @@ module.exports = {
                     } else {
                         req.session.loggedin = true
                         req.session.name = results[0].firstname + " " + results[0].lastname
+                        req.session.id = id
                         return res.redirect('/')
                     }
 

@@ -17,13 +17,13 @@
                         Sign In<span class="caret"></span>
                     </a>
                     <div class="dropdown-menu" style="padding: 20px; padding-bottom: 10px;">
-                        <form class="form-horizontal" method="post" accept-charset="UTF-8">
+                        <form class="form-horizontal" method="post" accept-charset="UTF-8" action="/">
                             <input class="form-control login" type="text" name="user" placeholder="Username.." /><br>
                             <input class="form-control login" type="password" name="password" placeholder="Password.." /><br>
-                            <% if (error.length > 0) { %>
+                            <% if (data.error.length > 0) { %>
                             <div class="alert">
                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                                <%= error %>
+                                <%= data.error %>
                             </div>
                             <%  } %>
                             <input class="btn btn-primary" type="submit" name="submit" value="Login" />
