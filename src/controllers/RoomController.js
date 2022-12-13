@@ -1,6 +1,7 @@
 const express = require('express')
 const {check, validationResult} = require('express-validator')
 const conn = require('../models/db/config')
+const Room = require('../models/Room')
 
 //const User = require('../models/User')
 
@@ -29,5 +30,15 @@ module.exports = {
             req.flash('errorSearch', message)
             res.redirect('/')
         }
+    },
+
+    getAllRooms: function(req, res){
+        Room.getAllRooms(function(err, result, field){
+            if (err) throw err
+            const name = req.session.name
+            const active = 0
+            const error = req.flash('error') || ''
+            res.render('index', {result, error, active, name})
+        })
     }
 }
