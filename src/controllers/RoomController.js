@@ -17,7 +17,10 @@ module.exports = {
         let result = validationResult(req)
 
         if (result.errors.length == 0) {
-            return res.render('rooms', {error, errorSearch, name, active})
+            Room.getAllRooms(function(err, results, field){
+                if (err) throw err
+                return res.render('rooms', {results, error, errorSearch, name, active})
+            })
         } 
         else {
             result = result.mapped()
@@ -38,7 +41,8 @@ module.exports = {
             const name = req.session.name
             const active = 0
             const error = req.flash('error') || ''
-            res.render('index', {result, error, active, name})
+            const errorSearch = req.flash('errorSearch') || ''
+            res.render('index', {result, error, active, name, errorSearch})
         })
     }
 }
