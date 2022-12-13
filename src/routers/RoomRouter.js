@@ -42,6 +42,8 @@ const roomValidator = [
 
 Router.post('/', roomValidator, RoomController.searchRooms)
 
+
+
 //Router.post('/', loginValidator, UserController.postLogin)
 
 

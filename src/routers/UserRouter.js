@@ -1,6 +1,7 @@
 const express = require('express')
 const {check, validationResult} = require('express-validator')
 const UserController = require('../controllers/UserController')
+const RoomController = require('../controllers/RoomController')
 const Router = express.Router()
 
 
@@ -45,13 +46,14 @@ const loginValidator = [
 	.isLength({min: 6}).withMessage('Mật khẩu phải nhiều hơn 6 kí tự')
 ]
 
-Router.get('/', function(req, res) {
-	const error = req.flash('error') || ''
-	const errorSearch = req.flash('errorSearch') || ''	
-	const name = req.session.name
-	const active = 0
-	res.render('index', {errorSearch, error, name, active})
-})
+// Router.get('/', function(req, res) {
+// 	const error = req.flash('error') || ''
+// 	const errorSearch = req.flash('errorSearch') || ''	
+// 	const name = req.session.name
+// 	const active = 0
+// 	res.render('index', {errorSearch, error, name, active})
+// })
+Router.get('/', RoomController.getAllRooms)
 
 
 Router.get('/services', function(req, res) {

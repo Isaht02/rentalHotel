@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2022 at 03:49 PM
+-- Generation Time: Dec 12, 2022 at 07:07 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.4
 
@@ -50,6 +50,26 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `firstname`, `lastname`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `facilities`
+--
+
+CREATE TABLE `facilities` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `facilities`
+--
+
+INSERT INTO `facilities` (`id`, `name`) VALUES
+(1, 'Nice view\r\n'),
+(2, 'Wifi availabe'),
+(3, 'Funiture is wood and clean');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `payments`
 --
 
@@ -90,18 +110,19 @@ CREATE TABLE `rooms` (
   `type` varchar(12) DEFAULT NULL,
   `bedNum` int(12) DEFAULT NULL,
   `peopleNum` int(12) DEFAULT NULL,
-  `img` varchar(256) DEFAULT NULL
+  `img` varchar(256) DEFAULT NULL,
+  `view` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `name`, `price`, `type`, `bedNum`, `peopleNum`, `img`) VALUES
-(1, 'room1', 100, 'small', 2, 3, NULL),
-(2, 'room2', 200, 'medium', 2, 4, NULL),
-(3, 'room3', 300, 'big', 2, 5, NULL),
-(4, 'room4', 100, 'small', 2, 3, NULL);
+INSERT INTO `rooms` (`id`, `name`, `price`, `type`, `bedNum`, `peopleNum`, `img`, `view`) VALUES
+(1, 'room1', 100, 'small', 2, 3, '/images/room-2.jpg', 'Sea View'),
+(2, 'room2', 200, 'medium', 2, 4, '/images/room-2.jpg', 'Sea View'),
+(3, 'room3', 300, 'big', 2, 5, '/images/room-3.jpg', 'Sea View'),
+(4, 'room4', 100, 'small', 2, 3, '/images/room-4.jpg', 'Sea View');
 
 -- --------------------------------------------------------
 
@@ -150,6 +171,12 @@ ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Indexes for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
@@ -188,6 +215,12 @@ ALTER TABLE `transactions`
 --
 ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `facilities`
+--
+ALTER TABLE `facilities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payments`

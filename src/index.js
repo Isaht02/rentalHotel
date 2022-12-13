@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser')
 
 const UserRouter = require('./routers/UserRouter')
 const RoomRouter = require('./routers/RoomRouter')
+const DetailRouter = require('./routers/DetailRouter')
+
+const Room = require('./models/Room')
 
 const app = express()
 
@@ -24,19 +27,21 @@ app.set('views', path.join(__dirname, 'views'))
 // routes 
 app.use('/', UserRouter)
 app.use('/rooms', RoomRouter)
-
+app.use('/detail', DetailRouter)
 
 const port = process.env.PORT || 8080
 app.listen(port, function(err) {
     console.log(`http://localhost:${port}`)
 })
 
-app.get('/detail', function(req, res) {
-    const error = req.flash('error') || ''
-    const active = 1
-    const name = req.session.name
-    res.render('roomdetail', {active, name, error})
-})
+// app.get('/detail', function(req, res) {
+//     const error = req.flash('error') || ''
+//     const active = 1
+//     const name = req.session.name
+//     res.render('roomdetail', {active, name, error})
+// })
+
+
 
 // app.use( function(req, res){
 //     return res.status(404).render('badgate')
