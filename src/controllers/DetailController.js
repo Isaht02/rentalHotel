@@ -9,12 +9,10 @@ module.exports = {
         if (err) throw err
 		const name = req.session.name
 		const active = 0
-        const error = req.flash('error') || ''
+		const error = req.flash('error') || ''
 
-            Facility.getFacility(req.params.id, function(err, result_facility, field){
 
-		res.render('roomdetail', {result, result_facility, active, error, name})
-    	    })
-        })
+		res.render('roomdetail', {result, active, error, name})
+    	})
 	}
 }

@@ -38,7 +38,9 @@ module.exports = {
             const name = req.session.name
             const active = 0
             const error = req.flash('error') || ''
-            res.render('index', {result, error, active, name})
+            const errorSearch = req.flash('errorSearch') || ''
+
+            res.render('index', {result, error, active, name, errorSearch})
         })
     }
 }

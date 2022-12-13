@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Admin</title>
+</head>
+
+<body>
+    <script>
+        $(document).ready(function() {
+            $(".delete").click(function() {
+
+                $('#myModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            });
+        });
+    </script>
+    <table cellpadding="10" cellspacing="10" border="0" style="border-collapse: collapse; margin: auto">
+
+        <tr class="control" style="text-align: left; font-weight: bold; font-size: 20px">
+            <td colspan="5">
+                <a href="/admin/user">Danh sách thành viên</a>
+                <a href="/admin/room" style="padding-left: 50px; color: red;">Room list</a>
+                <a href="/user/register" class="btn btn-outline-success" style="float: right;">Create</a>
+                <a href="/" class="btn btn-outline-primary" style="float: right; margin: 0px 5px 0px 5px;">Back</a>
+            </td>
+        </tr>   
+
+
+        <tr class="header">
+            <td>Username</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Address</td>
+            <td>Phone</td>
+            <td>Gender</td>
+        </tr>
+        <% for(var i = 0; i < result.length; i++){ %>
+            <tr class="item">
+                <td>
+                    <%= result[i].username%>
+                </td>
+                <td>
+                    <%= result[i].firstname%>
+                </td>
+                <td>
+                    <%= result[i].lastname%>
+                </td>
+                <td>
+                    <%= result[i].address%>
+                </td>
+                <td>
+                    <%= result[i].phone%>
+                </td>
+                <td>
+                    <%= result[i].gender%>
+                </td>
+                <td><a href="/admin/user/useredit/<%=result[i].id%>">Edit</a> | <a href="/admin/user/delete/<%=result[i].id%>" class="delete">Delete</a></td>
+            </tr>
+
+            <% } %>
+
+    </table>
+</body>
+
+</html>
